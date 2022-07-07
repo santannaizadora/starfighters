@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { Request, Response, NextFunction } from "express";
 
 export const errorHandler = (
   err: { type: string; message: string },
@@ -6,8 +6,9 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log(err);
   if (err.type === "not_found") {
-    res.status(404).send({
+    return res.status(404).send({
       message: err.message,
     });
   }
